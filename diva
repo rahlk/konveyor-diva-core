@@ -1,0 +1,23 @@
+#! /usr/bin/env sh
+
+ARGS=""
+while [ "$1" != "" ]; do
+    case "$1" in
+    # Quote arguments with spaces.
+    *\ *)
+        ARGS="${ARGS} '$1'"
+        ;;
+    *)
+        ARGS="${ARGS} $1"
+        ;;
+    esac
+    shift
+done
+
+# Build DIVA
+./gradlew --quiet clean ziptask  > /dev/null 2>&1
+# Make Binary
+jar xvf build/distributions/diva-all.zip  > /dev/null 2>&1
+
+# Execute command
+eval "java -jar bin/diva.jar $ARGS"
