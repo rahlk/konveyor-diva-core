@@ -74,6 +74,7 @@ public class Standalone {
 
         options.addOption("s", "source", true, "source path");
         options.addOption("b", "binary", true, "binary path");
+        options.addOption("o", "output", true, "output directory");
         options.addOption("c", "contexts", true, "contexts yaml file");
         options.addOption("u", "usage", true, "enable usage analysis");
 
@@ -233,10 +234,15 @@ public class Standalone {
             }
         }
 
-        try (Writer f = new FileWriter("transaction.json")) {
+        File directory = new File(cmd.getOptionValue("output"));
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        try (Writer f = new FileWriter(new File(directory.getAbsolutePath(), "transaction.json"))) {
             f.write(Util.JSON_SERIALIZER.writeValueAsString(res));
         }
-        try (Writer f = new FileWriter("transaction.yml")) {
+        try (Writer f = new FileWriter(new File(directory.getAbsolutePath(), "transaction.yml"))) {
             f.write(Util.YAML_SERIALIZER.writeValueAsString(res));
         }
     }

@@ -251,9 +251,9 @@ public class Context extends ArrayList<Constraint> {
             });
 
         }
-        try (Writer f = new FileWriter("contexts.yml")) {
-            f.write(Util.YAML_SERIALIZER.writeValueAsString(json));
-        }
+        // try (Writer f = new FileWriter("contexts.yml")) {
+        // f.write(Util.YAML_SERIALIZER.writeValueAsString(json));
+        // }
 
         return new ArrayList<>(result);
     }
