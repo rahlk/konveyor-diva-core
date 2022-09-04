@@ -21,3 +21,6 @@ jar xvf build/distributions/diva-all.zip  > /dev/null 2>&1
 
 # Execute command
 eval "java -jar bin/diva.jar $ARGS"
+
+# Clean everything
+./gradlew clean

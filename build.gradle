@@ -8,6 +8,7 @@
 
 plugins {
     // Apply the java-library plugin to add support for Java Library
+	id 'base'
     id 'java-library'
     id 'maven-publish'
     id 'com.cmgapps.licenses' version '2.1.0'
@@ -15,6 +16,11 @@ plugins {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+clean.doFirst {
+	delete "${rootDir}/bin"
+	delete "${rootDir}/lib"
+}
 
 repositories {
     // Use jcenter for resolving dependencies.
